@@ -21,6 +21,8 @@
     a:hover {
       text-decoration: underline;
     }
+
+    /* ヘッダー */
     header {
       background-color: #ff69b4;
       color: #fff;
@@ -32,31 +34,55 @@
       top: 0;
       z-index: 100;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-    .logo {
-      user-select: none;
+      position: relative;
     }
     #menuBtn {
       cursor: pointer;
       font-size: 26px;
       user-select: none;
       color: #fff;
-      margin-right: 15px;
+      margin: 0;
     }
-    #searchButton {
+    .logo {
+      user-select: none;
+      font-size: 28px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    #searchToggle {
       background: none;
       border: none;
       color: #fff;
-      font-size: 20px;
+      font-size: 22px;
       cursor: pointer;
-      padding: 0 8px 2px 8px;
     }
-    #searchButton:focus {
+    #searchForm {
+      position: absolute;
+      top: 56px;
+      right: 20px;
+      background: #ff69b4;
+      padding: 8px;
+      border-radius: 6px;
+      display: none;
+      z-index: 101;
+    }
+    #searchInput {
+      font-size: 16px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: none;
       outline: none;
+      background-color: #000;
+      color: #fff;
+      width: 180px;
     }
+
+    /* 作品一覧メニュー */
     #menu {
       position: absolute;
       top: 56px;
@@ -69,6 +95,7 @@
       color: #fff;
       max-width: 260px;
       box-shadow: 0 0 15px rgba(255,105,180,0.7);
+      z-index: 101;
     }
     #menu a {
       display: block;
@@ -82,20 +109,8 @@
       background-color: #ff69b4;
       color: #121212;
     }
-    #searchForm {
-      display: flex;
-      align-items: center;
-    }
-    #searchInput {
-      padding: 6px 10px;
-      font-size: 16px;
-      border-radius: 6px 0 0 6px;
-      border: none;
-      outline: none;
-      width: 150px;
-      background-color: #000;
-      color: #fff;
-    }
+
+    /* コンテンツ */
     .info {
       margin: 20px auto 40px;
       max-width: 700px;
@@ -130,6 +145,8 @@
         width: 90%;
       }
     }
+
+    /* コメント欄 */
     #comment-section {
       max-width: 700px;
       margin: 40px auto 80px;
@@ -195,21 +212,34 @@
       border-top: 1px solid #555;
       margin: 8px 0;
     }
+	.deleteBtn {
+  font-size: 16px;
+  padding: 0;
+  margin-left: 8px;
+  background: none;
+  border: none;
+  color: #ff69b4;
+  cursor: pointer;
+  user-select: none;
+}
+.deleteBtn:hover {
+  color: #e053a1;
+}
+
   </style>
 </head>
 <body>
 
 <header>
+  <div id="menuBtn" title="作品一覧">&#9776;</div>
   <div class="logo">JOHN.ERO</div>
-  <div style="display:flex; align-items:center;">
-    <div id="menuBtn" title="作品一覧">&#9776;</div>
-    <form id="searchForm" onsubmit="event.preventDefault(); searchComic();">
-      <input type="text" id="searchInput" placeholder="作品検索" autocomplete="off" />
-      <button id="searchButton" type="submit" title="検索">🔍</button>
-    </form>
-  </div>
+  <button id="searchToggle" title="検索" aria-label="検索">&#128269;</button>
+  <form id="searchForm" onsubmit="event.preventDefault(); searchComic();">
+    <input type="text" id="searchInput" placeholder="作品検索" autocomplete="off" />
+  </form>
 </header>
 
+<!-- 作品一覧メニュー -->
 <div id="menu">
   <a href="index.html">僕の彼女の性欲が強すぎる話</a>
   <a href="another.html">別の作品名</a>
@@ -221,27 +251,27 @@
 </div>
 
 <div id="comic">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0001.jpg" alt="Page 1">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0002.jpg" alt="Page 2">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0003.jpg" alt="Page 3">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0004.jpg" alt="Page 4">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0005.jpg" alt="Page 5">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0006.jpg" alt="Page 6">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0007.jpg" alt="Page 7">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0008.jpg" alt="Page 8">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0009.jpg" alt="Page 9">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0010.jpg" alt="Page 10">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0011.jpg" alt="Page 11">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0012.jpg" alt="Page 12">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0013.jpg" alt="Page 13">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0014.jpg" alt="Page 14">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0015.jpg" alt="Page 15">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0016.jpg" alt="Page 16">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0017.jpg" alt="Page 17">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0018.jpg" alt="Page 18">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0019.jpg" alt="Page 19">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0020.jpg" alt="Page 20">
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0021.jpg" alt="Page 21">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0001.jpg" alt="Page 1" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0002.jpg" alt="Page 2" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0003.jpg" alt="Page 3" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0004.jpg" alt="Page 4" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0005.jpg" alt="Page 5" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0006.jpg" alt="Page 6" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0007.jpg" alt="Page 7" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0008.jpg" alt="Page 8" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0009.jpg" alt="Page 9" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0010.jpg" alt="Page 10" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0011.jpg" alt="Page 11" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0012.jpg" alt="Page 12" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0013.jpg" alt="Page 13" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0014.jpg" alt="Page 14" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0015.jpg" alt="Page 15" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0016.jpg" alt="Page 16" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0017.jpg" alt="Page 17" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0018.jpg" alt="Page 18" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0019.jpg" alt="Page 19" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0020.jpg" alt="Page 20" />
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0021.jpg" alt="Page 21" />
 </div>
 
 <div id="comment-section">
@@ -252,7 +282,7 @@
   <div id="comments"></div>
 </div>
 
-<!-- Firebase SDK（CDN形式） -->
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
 
@@ -325,16 +355,35 @@
         const comment = childSnapshot.val();
         const div = document.createElement("div");
         div.className = "comment";
-        div.innerHTML = `<strong>${count}. ${escapeHtml(comment.nickname)}</strong><span class="timestamp">${escapeHtml(comment.timestamp)}</span><br>${escapeHtml(comment.content).replace(/\n/g, "<br>")}`;
+        div.innerHTML = `
+          <strong>${count}. ${escapeHtml(comment.nickname)}</strong>
+          <span class="timestamp">${escapeHtml(comment.timestamp)}</span>
+          <button class="deleteBtn" data-key="${childSnapshot.key}" title="コメントを削除する" style="float:right; background:none; border:none; color:#ff69b4; cursor:pointer;">🗑️</button>
+          <br>${escapeHtml(comment.content).replace(/\n/g, "<br>")}`;
         commentsDiv.appendChild(div);
         count++;
       });
       commentsDiv.scrollTop = commentsDiv.scrollHeight;
+      attachDeleteHandlers();
     });
   }
 
-  commentsRef.on("child_added", refreshComments);
-  refreshComments();
+  function attachDeleteHandlers() {
+    const deleteButtons = document.querySelectorAll(".deleteBtn");
+    deleteButtons.forEach(btn => {
+      btn.onclick = () => {
+        const key = btn.getAttribute("data-key");
+        if (confirm("このコメントを削除しますか？")) {
+          commentsRef.child(key).remove()
+            .then(() => console.log("コメント削除成功"))
+            .catch(err => console.error("コメント削除エラー:", err));
+        }
+      };
+    });
+  }
+
+commentsRef.on("value", refreshComments);
+
 
   function escapeHtml(text) {
     return text.replace(/[&<>"']/g, (m) => {
@@ -348,5 +397,7 @@
     });
   }
 </script>
+
+
 </body>
 </html>
