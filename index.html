@@ -1,95 +1,383 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>僕の彼女の性欲が強すぎる話</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: #f1f1f1;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>僕の彼女の性欲が強すぎる話 - JOHN.ERO</title>
 
-    header {
-      background-color: #ff69b4;
-      color: #fff;
-      font-weight: bold;
-      font-size: 24px;
-      padding: 12px 0;
-      width: 100vw;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
-
-    .info {
-      margin: 20px auto 40px;
-      max-width: 700px;
-    }
-    .info h1 {
-      font-size: 28px;
-      margin: 0 0 8px;
-    }
-    .info .author {
-      font-size: 16px;
-      color: #ccc;
-    }
-
+<style>
+  body {
+    background-color: #121212;
+    color: #f1f1f1;
+    font-family: 'Segoe UI', sans-serif, sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: 100%;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  header {
+    background-color: #ff69b4;
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 12px 20px;
+    width: 100vw;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    user-select: none;
+  }
+  #menuBtn {
+    cursor: pointer;
+    font-size: 26px;
+    user-select: none;
+    color: #fff;
+    margin-right: 15px;
+  }
+  #searchButton {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 8px 2px 8px;
+  }
+  #searchButton:focus {
+    outline: none;
+  }
+  #menu {
+    position: absolute;
+    top: 56px;
+    left: 10px;
+    background: #121212;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    padding: 12px 18px;
+    display: none;
+    color: #fff;
+    max-width: 260px;
+    box-shadow: 0 0 15px rgba(255,105,180,0.7);
+  }
+  #menu a {
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px solid #444;
+  }
+  #menu a:last-child {
+    border-bottom: none;
+  }
+  #menu a:hover {
+    background-color: #ff69b4;
+    color: #121212;
+  }
+  #searchForm {
+    display: flex;
+    align-items: center;
+  }
+  #searchInput {
+    padding: 6px 10px;
+    font-size: 16px;
+    border-radius: 6px 0 0 6px;
+    border: none;
+    outline: none;
+    width: 150px;
+    background-color: #000;
+    color: #fff;
+  }
+  .info {
+    margin: 20px auto 40px;
+    max-width: 700px;
+    text-align: center;
+  }
+  .info h1 {
+    font-size: 28px;
+    margin: 0 0 8px;
+  }
+  .info .author {
+    font-size: 16px;
+    color: #ccc;
+  }
+  #comic {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    padding: 0 10px;
+  }
+  .comic-img {
+    max-width: 100%;
+    width: 350px;
+    height: auto;
+    margin: 24px auto;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    display: block;
+  }
+  @media (max-width: 600px) {
     .comic-img {
-      max-width: 90%;
-      width: 350px;
-      height: auto;
-      margin: 24px auto;
-      padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-      border-radius: 4px;
-      display: block;
+      width: 90%;
     }
+  }
+  #comment-section {
+    max-width: 700px;
+    margin: 40px auto 80px;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255,105,180,0.7);
+  }
+  #comment-section h2 {
+    margin-bottom: 16px;
+  }
+  #nickname, #commentContent {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    resize: vertical;
+  }
+  #commentContent {
+    min-height: 80px;
+  }
+  #submitCommentBtn {
+    margin-top: 12px;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ff69b4;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  #submitCommentBtn:hover {
+    background-color: #e053a1;
+  }
+  #comments {
+    margin-top: 32px;
+    text-align: left;
+  }
+  .comment {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #555;
+  }
+  .comment strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .comment .timestamp {
+    font-size: 12px;
+    color: #ccc;
+  }
+  hr.comment-divider {
+    border: none;
+    border-top: 1px solid #555;
+    margin: 8px 0;
+  }
+</style>
 
-    @media (max-width: 600px) {
-      .comic-img {
-        width: 90%;
-      }
-    }
-  </style>
 </head>
 <body>
 
-<header>JOHN.ERO</header>
+<header>
+  <div class="logo">JOHN.ERO</div>
+  <div style="display:flex; align-items:center;">
+    <div id="menuBtn" title="作品一覧">&#9776;</div>
+    <form id="searchForm" onsubmit="event.preventDefault(); searchComic();">
+      <input type="text" id="searchInput" placeholder="作品検索" autocomplete="off" />
+      <button id="searchButton" type="submit" title="検索">🔍</button>
+    </form>
+  </div>
+</header>
+
+<!-- 作品一覧メニュー -->
+<div id="menu">
+  <a href="index.html">僕の彼女の性欲が強すぎる話</a>
+  <a href="another.html">別の作品名</a>
+</div>
 
 <div class="info">
   <h1>僕の彼女の性欲が強すぎる話</h1>
   <div class="author">作者 ジョン</div>
 </div>
 
-<!-- 縦スクロールで漫画画像を表示 -->
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0001.jpg" alt="Page 1">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0002.jpg" alt="Page 2">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0003.jpg" alt="Page 3">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0004.jpg" alt="Page 4">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0005.jpg" alt="Page 5">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0006.jpg" alt="Page 6">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0007.jpg" alt="Page 7">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0008.jpg" alt="Page 8">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0009.jpg" alt="Page 9">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0010.jpg" alt="Page 10">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0011.jpg" alt="Page 11">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0012.jpg" alt="Page 12">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0013.jpg" alt="Page 13">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0014.jpg" alt="Page 14">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0015.jpg" alt="Page 15">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0016.jpg" alt="Page 16">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0017.jpg" alt="Page 17">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0018.jpg" alt="Page 18">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0019.jpg" alt="Page 19">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0020.jpg" alt="Page 20">
-<img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0021.jpg" alt="Page 21">
+<div id="comic">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0001.jpg" alt="Page 1">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0002.jpg" alt="Page 2">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0003.jpg" alt="Page 3">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0004.jpg" alt="Page 4">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0005.jpg" alt="Page 5">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0006.jpg" alt="Page 6">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0007.jpg" alt="Page 7">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0008.jpg" alt="Page 8">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0009.jpg" alt="Page 9">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0010.jpg" alt="Page 10">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0011.jpg" alt="Page 11">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0012.jpg" alt="Page 12">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0013.jpg" alt="Page 13">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0014.jpg" alt="Page 14">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0015.jpg" alt="Page 15">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0016.jpg" alt="Page 16">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0017.jpg" alt="Page 17">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0018.jpg" alt="Page 18">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0019.jpg" alt="Page 19">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0020.jpg" alt="Page 20">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0021.jpg" alt="Page 21">
+</div>
+
+<div id="comment-section">
+  <h2>コメントを投稿する</h2>
+  <input id="nickname" type="text" placeholder="ニックネーム" maxlength="30" />
+  <textarea id="commentContent" rows="4" placeholder="コメント内容" maxlength="500"></textarea>
+  <button id="submitCommentBtn" onclick="submitComment()">コメントする</button>
+  <div id="comments"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBreOGYSXd2lI-HhWimPLjTtfdqttkIsV0",
+    authDomain: "myeromanga.firebaseapp.com",
+    databaseURL: "https://myeromanga-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "myeromanga",
+    storageBucket: "myeromanga.firebasestorage.app",
+    messagingSenderId: "756137144604",
+    appId: "1:756137144604:web:e3e20dcbb58c6f1174cad9"
+  };
+  // Firebase初期化
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // 作品一覧メニュー開閉処理
+  const menuBtn = document.getElementById("menuBtn");
+  const menu = document.getElementById("menu");
+  menuBtn.addEventListener("click", () => {
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  });
+
+  // 作品配列（リンク先は必要に応じて変えてください）
+  const works = [
+    { name: "僕の彼女の性欲が強すぎる話", url: "index.html" },
+    { name: "別の作品名", url: "another.html" },
+  ];
+
+  // 検索機能
+  function searchComic() {
+    const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+    if (!keyword) {
+      alert("検索キーワードを入力してください");
+      return;
+    }
+    const found = works.find(w => w.name.toLowerCase().includes(keyword));
+    if (found) {
+      window.location.href = found.url;
+    } else {
+      alert("該当する作品が見つかりません");
+    }
+  }
+
+  // コメント投稿
+  const commentsRef = db.ref("comments");
+
+  function submitComment() {
+  console.log("コメント送信ボタンが押されました");
+    const nicknameInput = document.getElementById("nickname");
+    const contentInput = document.getElementById("commentContent");
+    let nickname = nicknameInput.value.trim() || "名無し";
+    let content = contentInput.value.trim();
+    if (!content) {
+      alert("コメント内容を入力してください");
+      return;
+    }
+    const now = new Date();
+    const timestamp =
+      now.getFullYear() +
+      "/" +
+      String(now.getMonth() + 1).padStart(2, "0") +
+      "/" +
+      String(now.getDate()).padStart(2, "0") +
+      " " +
+      String(now.getHours()).padStart(2, "0") +
+      ":" +
+      String(now.getMinutes()).padStart(2, "0");
+
+    commentsRef.push({ nickname, content, timestamp });
+	commentsRef.push({ nickname, content, timestamp })
+  .then(() => console.log("Firebaseにコメント書き込み成功"))
+  .catch(error => console.error("Firebase書き込みエラー:", error));
+
+    nicknameInput.value = "";
+    contentInput.value = "";
+  }
+
+  // コメント表示
+  const commentsDiv = document.getElementById("comments");
+  function refreshComments() {
+    commentsDiv.innerHTML = "";
+    let count = 1;
+    commentsRef.once("value", (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        const comment = childSnapshot.val();
+        const commentHTML = document.createElement("div");
+        commentHTML.classList.add("comment");
+        commentHTML.innerHTML = `<strong>${count}. ${escapeHtml(comment.nickname)}</strong> <span class="timestamp">${escapeHtml(
+          comment.timestamp
+        )}</span><br>${escapeHtml(comment.content).replace(/\n/g, "<br>")}`;
+        commentsDiv.appendChild(commentHTML);
+
+        if(count !== snapshot.numChildren()) {
+          const hr = document.createElement("hr");
+          hr.classList.add("comment-divider");
+          commentsDiv.appendChild(hr);
+        }
+        count++;
+      });
+    });
+  }
+  // 初期表示＆リアルタイム更新
+  refreshComments();
+  commentsRef.on("child_added", refreshComments);
+
+  // XSS対策エスケープ
+  function escapeHtml(text) {
+    return text.replace(/[&<>"']/g, (m) => {
+      switch (m) {
+        case "&":
+          return "&amp;";
+        case "<":
+          return "&lt;";
+        case ">":
+          return "&gt;";
+        case '"':
+          return "&quot;";
+        case "'":
+          return "&#39;";
+        default:
+          return m;
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
