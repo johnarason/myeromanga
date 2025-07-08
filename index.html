@@ -252,9 +252,12 @@
   <div id="comments"></div>
 </div>
 
+<!-- Firebase SDK（CDN形式） -->
 <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js"></script>
+
 <script>
+  // Firebase 初期化
   const firebaseConfig = {
     apiKey: "AIzaSyBreOGYSXd2lI-HhWimPLjTtfdqttkIsV0",
     authDomain: "myeromanga.firebaseapp.com",
@@ -264,9 +267,13 @@
     messagingSenderId: "756137144604",
     appId: "1:756137144604:web:e3e20dcbb58c6f1174cad9"
   };
-  // Firebase初期化
-  const app = firebase.initializeApp(firebaseConfig);
+
+  firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
+
+  // あとはコメント投稿・取得などの処理
+</script>
+
 
   // 作品一覧メニュー開閉処理
   const menuBtn = document.getElementById("menuBtn");
