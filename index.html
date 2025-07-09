@@ -225,6 +225,33 @@
 .deleteBtn:hover {
   color: #e053a1;
 }
+.magnifier-icon {
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.magnifier-icon::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 3px;
+  background-color: white;
+  transform: rotate(45deg);
+  bottom: -4px;
+  right: -4px;
+}
+.likeBtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  user-select: none;
+}
+
 
   </style>
 </head>
@@ -233,11 +260,19 @@
 <header>
   <div id="menuBtn" title="作品一覧">&#9776;</div>
   <div class="logo">JOHN.ERO</div>
-  <button id="searchToggle" title="検索" aria-label="検索">&#128269;</button>
-  <form id="searchForm" onsubmit="event.preventDefault(); searchComic();">
-    <input type="text" id="searchInput" placeholder="作品検索" autocomplete="off" />
-  </form>
+<div id="searchToggle" title="検索" style="cursor:pointer; width:24px; height:24px; display:flex; align-items:center; justify-content:center;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="10" cy="10" r="7"></circle>
+    <line x1="15" y1="15" x2="22" y2="22"></line>
+  </svg>
+</div>
+
+<form id="searchForm" onsubmit="event.preventDefault(); searchComic();">
+  <input type="text" id="searchInput" placeholder="作品検索" autocomplete="off" />
+</form>
+
 </header>
+
 
 <!-- 作品一覧メニュー -->
 <div id="menu">
@@ -287,6 +322,11 @@
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
 
 <script>
+if (!localStorage.getItem("userId")) {
+  localStorage.setItem("userId", crypto.randomUUID());
+}
+const userId = localStorage.getItem("userId");
+
   const firebaseConfig = {
     apiKey: "AIzaSyBreOGYSXd2lI-HhWimPLjTtfdqttkIsV0",
     authDomain: "myeromanga.firebaseapp.com",
@@ -305,6 +345,11 @@
   menuBtn.addEventListener("click", () => {
     menu.style.display = (menu.style.display === "block") ? "none" : "block";
   });
+
+document.getElementById("searchToggle").addEventListener("click", () => {
+  const form = document.getElementById("searchForm");
+  form.style.display = (form.style.display === "block") ? "none" : "block";
+});
 
   const works = [
     { name: "僕の彼女の性欲が強すぎる話", url: "index.html" },
@@ -348,6 +393,7 @@
 
   const commentsDiv = document.getElementById("comments");
   function refreshComments() {
+  
     commentsDiv.innerHTML = "";
     let count = 1;
     commentsRef.once("value", (snapshot) => {
@@ -355,18 +401,45 @@
         const comment = childSnapshot.val();
         const div = document.createElement("div");
         div.className = "comment";
-        div.innerHTML = `
-          <strong>${count}. ${escapeHtml(comment.nickname)}</strong>
-          <span class="timestamp">${escapeHtml(comment.timestamp)}</span>
-          <button class="deleteBtn" data-key="${childSnapshot.key}" title="コメントを削除する" style="float:right; background:none; border:none; color:#ff69b4; cursor:pointer;">🗑️</button>
-          <br>${escapeHtml(comment.content).replace(/\n/g, "<br>")}`;
+       div.innerHTML = `
+  <strong>${count}. ${escapeHtml(comment.nickname)}</strong>
+  <span class="timestamp">${escapeHtml(comment.timestamp)}</span>
+  <button class="deleteBtn" data-key="${childSnapshot.key}" title="コメントを削除する" style="float:right; background:none; border:none; color:#ff69b4; cursor:pointer;">🗑️</button>
+  <br>${escapeHtml(comment.content).replace(/\n/g, "<br>")}
+  <br>
+  <button class="likeBtn" data-key="${childSnapshot.key}" style="margin-top:6px; cursor:pointer; color:${comment.likedBy && comment.likedBy[userId] ? 'deepskyblue' : 'gray'};">
+    👍 <span class="likeCount">${comment.likes || 0}</span>
+  </button>
+`;
+
         commentsDiv.appendChild(div);
         count++;
       });
       commentsDiv.scrollTop = commentsDiv.scrollHeight;
       attachDeleteHandlers();
+	  attachLikeHandlers();
+
     });
   }
+  
+function attachLikeHandlers() {
+  document.querySelectorAll(".likeBtn").forEach(btn => {
+    btn.onclick = () => {
+      const key = btn.getAttribute("data-key");
+      commentsRef.child(key).get().then(snapshot => {
+        const c = snapshot.val();
+        if (!c.likedBy) c.likedBy = {};
+        if (c.likedBy[userId]) {
+          alert("このコメントにはすでにいいねしています。");
+          return;
+        }
+        c.likes = (c.likes || 0) + 1;
+        c.likedBy[userId] = true;
+        commentsRef.child(key).update({ likes: c.likes, likedBy: c.likedBy });
+      });
+    };
+  });
+}
 
   function attachDeleteHandlers() {
     const deleteButtons = document.querySelectorAll(".deleteBtn");
