@@ -278,6 +278,73 @@
       font-size: 16px;
       user-select: none;
     }
+	
+/* ▼ 固定右下広告 ▼ */
+#adBanner {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: none;
+  z-index: 9999;
+}
+#adBanner img {
+  width: 300px;
+  height: auto;
+  display: block;
+}
+#adBanner #closeAd {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+#adBanner #closeAd:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* ▼ フェードイン下部広告 ▼ */
+/* ▼ フェードイン下部広告 ▼ */
+#adFullBanner {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px; /* 💡 出しすぎないように調整 */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+  animation: fadeInUp 2s ease forwards;
+}
+
+#adFullBanner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* ゆっくりフェードインして下から上がる */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -339,6 +406,17 @@
   <textarea id="commentContent" rows="4" placeholder="コメント内容" maxlength="500"></textarea>
   <button id="submitCommentBtn" onclick="submitComment()">コメントする</button>
   <div id="comments"></div>
+</div>
+
+<!-- 📢 広告バナー -->
+<div id="adBanner">
+  <img src="AD.png" alt="広告" />
+  <button id="closeAd">close ad ×</button>
+</div>
+
+<!-- 📢 フェードイン中央下広告 -->
+<div id="adFullBanner">
+  <img src="AD.png" alt="広告" />
 </div>
 
 <!-- Firebase SDK -->
@@ -493,6 +571,33 @@ commentsRef.on("value", refreshComments);
       }[m] || m;
     });
   }
+  
+// ▼ 右下広告（10秒ごと再表示）
+let adTimer = null;
+function showAd() {
+  document.getElementById("adBanner").style.display = "block";
+  clearTimeout(adTimer);
+}
+function hideAd() {
+  document.getElementById("adBanner").style.display = "none";
+  adTimer = setTimeout(showAd, 10000);
+}
+document.getElementById("closeAd").addEventListener("click", hideAd);
+setTimeout(showAd, 10000);
+
+// ▼ フェードイン下部広告（20秒ごとに表示・3秒後に消える）
+function showFullAd() {
+  const fullAd = document.getElementById("adFullBanner");
+  fullAd.style.display = "flex";
+  fullAd.style.animation = "fadeInUp 2s ease";
+
+  setTimeout(() => {
+    fullAd.style.display = "none";
+  }, 5000);
+}
+setInterval(showFullAd, 10000); // 20秒ごとに出現
+
+
 </script>
 
 
