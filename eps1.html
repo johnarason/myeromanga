@@ -279,11 +279,11 @@
       user-select: none;
     }
 	
-/* 🟥 右から出てくる右下広告 */
+/* 🟥 右から出てくる右下広告（スマホ右下ピッタリ対応） */
 #adBanner {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 0;
+  right: 0;
   display: none;
   z-index: 9999;
   animation: slideInRight 1.5s ease forwards;
@@ -293,6 +293,7 @@
   height: auto;
   display: block;
 }
+
 #adBanner #closeAd {
   position: absolute;
   top: 8px;
@@ -305,18 +306,22 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+/* ✅ スマホ対応：幅を画面サイズに合わせる */
 @media (max-width: 500px) {
   #adBanner img {
-    width: 90vw;
+    width: 100vw;
   }
 }
 
-/* 🟦 上から下に入る下部広告 */
+
+/* 🟦 下部広告 - スマホ幅対応 & 中央固定 */
 #adFullBanner {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: auto;
   width: 100%;
   max-width: 500px;
   display: none;
@@ -329,6 +334,7 @@
   display: block;
   object-fit: cover;
 }
+
 
 /* アニメーション定義 */
 @keyframes slideInRight {
