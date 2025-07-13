@@ -315,7 +315,7 @@
 }
 
 
-/* 🟦 下部広告 - スマホ幅対応 & 中央固定 */
+/* 🟦 下からスライドインしてくる下部広告（AD2対応） */
 #adFullBanner {
   position: fixed;
   bottom: 0;
@@ -323,16 +323,16 @@
   right: 0;
   margin: auto;
   width: 100%;
-  max-width: 500px;
+  max-width: 100vw;
   display: none;
   z-index: 9998;
-  animation: slideInDown 2s ease forwards;
+  animation: slideInDown 2.5s ease forwards;
 }
 #adFullBanner img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 
@@ -430,7 +430,7 @@
 
 <!-- 🟦 下からくる幅広バナー広告 -->
 <div id="adFullBanner">
-  <img src="AD.png" alt="広告" />
+  <img src="AD2.png" alt="広告" />
 </div>
 
 
