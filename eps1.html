@@ -279,7 +279,7 @@
       user-select: none;
     }
 	
-/* 🟥 右から出てくる右下広告（スマホ右下ピッタリ対応） */
+/* 🟥 右下広告 */
 #adBanner {
   position: fixed;
   bottom: 0;
@@ -287,31 +287,27 @@
   display: none;
   z-index: 9999;
   animation: slideInRight 1.5s ease forwards;
+  position: fixed;
 }
+
 #adBanner img {
   width: 300px;
   height: auto;
   display: block;
 }
 
+/* close ad ボタンを画像の右上に配置 */
 #adBanner #closeAd {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  padding: 4px 8px;
-  background: rgba(0, 0, 0, 0.6);
+  top: 4px;
+  right: 4px;
+  background-color: rgba(0,0,0,0.6);
   color: white;
-  border: 1px solid white;
+  border: none;
+  padding: 4px 8px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
-}
-
-/* ✅ スマホ対応：幅を画面サイズに合わせる */
-@media (max-width: 500px) {
-  #adBanner img {
-    width: 100vw;
-  }
 }
 
 
@@ -321,9 +317,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  margin: auto;
   width: 100%;
-  max-width: 100vw;
   display: none;
   z-index: 9998;
   animation: slideInDown 2.5s ease forwards;
@@ -334,7 +328,6 @@
   display: block;
   object-fit: contain;
 }
-
 
 /* アニメーション定義 */
 @keyframes slideInRight {
@@ -349,13 +342,13 @@
 }
 
 @keyframes slideInDown {
-  0% {
-    opacity: 0;
+  from {
     transform: translateY(-100%);
+    opacity: 0;
   }
-  100% {
-    opacity: 1;
+  to {
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -429,8 +422,13 @@
 </div>
 
 <!-- 🟦 下からくる幅広バナー広告 -->
+<!-- ✅ 正しい形に修正 -->
 <div id="adFullBanner">
-  <img src="AD2.png" alt="広告" />
+  <img id="adFullImage" src="AD2.png" alt="広告バナー" />
+</div>
+
+<div id="adFullBanner">
+  <img id="adFullImage" src="AD3.png" alt="広告バナー" />
 </div>
 
 
@@ -614,7 +612,34 @@ function showFullAd() {
 }
 setInterval(showFullAd, 10000); // 20秒ごとに出現
 
+let adImages = ["AD2.png", "AD3.png"];
+let adIndex = 0;
 
+function showFullAd() {
+  const ad = document.getElementById("adFullBanner");
+  const img = document.getElementById("adFullImage");
+
+  const sequence = ["AD3.png", "AD2.png", "AD3.png", "AD2.png"];
+  let step = 0;
+
+  // 初期表示
+  ad.style.display = "block";
+  ad.style.animation = "slideInDown 1s ease forwards";
+  img.src = sequence[step];
+
+  const interval = setInterval(() => {
+    step++;
+    if (step < sequence.length) {
+      img.src = sequence[step];
+    } else {
+      clearInterval(interval);
+      ad.style.display = "none";
+    }
+  }, 1700); // 2秒ごとに切り替え
+}
+
+// 10秒ごとに発動
+setInterval(showFullAd, 10000);
 
 </script>
 
