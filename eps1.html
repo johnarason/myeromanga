@@ -287,7 +287,7 @@
   display: none;
   z-index: 9999;
   animation: slideInRight 1.5s ease forwards;
-  position: fixed;
+ 
 }
 
 #adBanner img {
@@ -384,6 +384,7 @@
 </div>
 
 <div id="comic">
+ <img class="comic-img" src="BC.png" alt="Page 0" />
   <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0001.jpg" alt="Page 1" />
   <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0002.jpg" alt="Page 2" />
   <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0003.jpg" alt="Page 3" />
@@ -422,13 +423,8 @@
 </div>
 
 <!-- 🟦 下からくる幅広バナー広告 -->
-<!-- ✅ 正しい形に修正 -->
 <div id="adFullBanner">
   <img id="adFullImage" src="AD2.png" alt="広告バナー" />
-</div>
-
-<div id="adFullBanner">
-  <img id="adFullImage" src="AD3.png" alt="広告バナー" />
 </div>
 
 
@@ -612,8 +608,6 @@ function showFullAd() {
 }
 setInterval(showFullAd, 10000); // 20秒ごとに出現
 
-let adImages = ["AD2.png", "AD3.png"];
-let adIndex = 0;
 
 function showFullAd() {
   const ad = document.getElementById("adFullBanner");
