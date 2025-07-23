@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>人妻欲情物語 - 試し読み</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: rgba(0,0,0,0.7);
+      text-align: center;
+      padding: 14px 0;
+      font-size: 20px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header button {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      height: 100vh;
+      align-items: center;
+    }
+
+    .page {
+      flex: 0 0 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      scroll-snap-align: center;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+
+    .page img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="location.href='buy.html'">← 購入ページへ</button>
+    人妻欲情物語
+  </header>
+
+  <div class="scroll-container">
+    <div class="page">
+      <img src="PPs.png" alt="試し読み1ページ目">
+    </div>
+    <!-- 2ページ目以降の追加例
+    <div class="page">
+      <img src="PPs2.png" alt="試し読み2ページ目">
+    </div>
+    -->
+  </div>
+</body>
+</html>

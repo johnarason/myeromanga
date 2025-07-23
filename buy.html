@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>人妻欲情物語 - JOHN.EROブックス</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+    }
+    header {
+      background-color: #ff69b4;
+      padding: 16px 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    header button {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      color: #ff69b4;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .title {
+      padding: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .content {
+      display: flex;
+      gap: 20px;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+    .cover {
+      flex: 1 1 200px;
+      max-width: 300px;
+    }
+    .cover img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    }
+    .details {
+      flex: 2 1 300px;
+    }
+    .rating {
+      font-size: 18px;
+      color: gold;
+      margin-bottom: 8px;
+    }
+    .details-box {
+      background: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .buttons {
+      margin: 20px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn {
+      background-color: #ff69b4;
+      color: #fff;
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    .btn:hover {
+      background-color: #e053a1;
+    }
+    #sampleSection {
+      display: none;
+      padding: 0 20px 40px;
+      text-align: center;
+    }
+    #sampleSection img {
+      max-width: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+    /* レビューエリア */
+    #reviewArea {
+      background: #fff;
+      margin: 0 20px 40px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+    #reviewList .review {
+      background: #f8f8f8;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    #reviewForm {
+      margin-top: 20px;
+    }
+    #reviewForm input, #reviewForm select, #reviewForm textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #reviewForm button {
+      background: #ff69b4;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #reviewForm button:hover {
+      background: #e053a1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="location.href='eps1.html'">← 作品一覧へ</button>
+    人妻欲情物語
+  </header>
+
+  <div class="title">人妻欲情物語</div>
+
+  <div class="content">
+    <div class="cover">
+      <img src="PP.png" alt="表紙画像">
+    </div>
+    <div class="details">
+      <div class="rating" id="avgRating">★★★★★ (5.0) (0)</div>
+      <div class="details-box">
+        <strong>作品詳細</strong><br>
+        タイトル：人妻欲情物語<br>
+        作者：ジョン<br>
+        ジャンル：エロ<br>
+        ページ数：1
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <a class="btn" href="sample.html">試し読み</a>
+    <a class="btn" href="https://qr.paypay.ne.jp/p2p01_qGB4hP6JhnVhu4KG" target="_blank">購入する</a>
+  </div>
+
+  <!-- レビューエリア -->
+  <div id="reviewArea">
+    <h2>レビュー</h2>
+    <div id="reviewList"></div>
+    <div id="reviewForm">
+      <input type="text" id="nickname" placeholder="ニックネーム" maxlength="30">
+      <select id="reviewStar">
+        <option value="5">★★★★★ (5)</option>
+        <option value="4">★★★★☆ (4)</option>
+        <option value="3">★★★☆☆ (3)</option>
+        <option value="2">★★☆☆☆ (2)</option>
+        <option value="1">★☆☆☆☆ (1)</option>
+      </select>
+      <textarea id="reviewComment" placeholder="コメントを入力" maxlength="300"></textarea>
+      <button onclick="submitReview()">レビューを送信</button>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBreOGYSXd2lI-HhWimPLjTtfdqttkIsV0",
+      authDomain: "myeromanga.firebaseapp.com",
+      databaseURL: "https://myeromanga-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "myeromanga",
+      storageBucket: "myeromanga.firebasestorage.app",
+      messagingSenderId: "756137144604",
+      appId: "1:756137144604:web:e3e20dcbb58c6f1174cad9"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const reviewRef = db.ref("reviews/hitoduma"); // 作品ごとに分ける
+
+    function submitReview() {
+      const nickname = document.getElementById("nickname").value.trim() || "名無し";
+      const star = Number(document.getElementById("reviewStar").value);
+      const comment = document.getElementById("reviewComment").value.trim();
+      if (!comment) {
+        alert("コメントを入力してください");
+        return;
+      }
+      const now = new Date();
+      const timestamp = `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,"0")}/${String(now.getDate()).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
+      reviewRef.push({ nickname, star, comment, timestamp });
+
+      document.getElementById("reviewComment").value = "";
+    }
+
+    function refreshReviews() {
+      const list = document.getElementById("reviewList");
+      list.innerHTML = "";
+      let totalStars = 0, count = 0;
+
+      reviewRef.once("value", snapshot => {
+        snapshot.forEach(child => {
+          const r = child.val();
+          totalStars += r.star;
+          count++;
+          const div = document.createElement("div");
+          div.className = "review";
+          div.innerHTML = `
+            <strong>${escapeHtml(r.nickname)}</strong> – ${"★".repeat(r.star)}${"☆".repeat(5 - r.star)}
+            <br>${escapeHtml(r.comment)}<br><small>${r.timestamp}</small>`;
+          list.appendChild(div);
+        });
+
+        const avg = (count > 0) ? (totalStars / count).toFixed(1) : 0;
+        document.getElementById("avgRating").innerText = `${"★".repeat(Math.round(avg))}${"☆".repeat(5-Math.round(avg))} (${avg}) (${count})`;
+      });
+    }
+
+    reviewRef.on("value", refreshReviews);
+
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, (m) => {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m];
+      });
+    }
+  </script>
+</body>
+</html>
