@@ -152,7 +152,7 @@
       <img src="PP.png" alt="表紙画像">
     </div>
     <div class="details">
-      <div class="rating" id="avgRating">★★★★★ (5.0) (0)</div>
+      <div class="rating" id="avgRating">★★★★★ (0.0) (0)</div>
       <div class="details-box">
         <strong>作品詳細</strong><br>
         タイトル：人妻欲情物語<br>
@@ -181,7 +181,7 @@
         <option value="2">★★☆☆☆ (2)</option>
         <option value="1">★☆☆☆☆ (1)</option>
       </select>
-      <input type="text" id="reviewTitle" placeholder="レビュータイトル（例：最高でした）" maxlength="50">
+      <input type="text" id="reviewTitle" placeholder="レビュータイトル" maxlength="50">
       <textarea id="reviewComment" placeholder="コメントを入力" maxlength="300"></textarea>
       <button onclick="submitReview()">レビューを送信</button>
     </div>
@@ -216,7 +216,6 @@
       const now = new Date();
       const timestamp = `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,"0")}/${String(now.getDate()).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
       reviewRef.push({ nickname, star, title, comment, timestamp });
-
       document.getElementById("reviewComment").value = "";
       document.getElementById("reviewTitle").value = "";
     }
@@ -226,7 +225,8 @@
       list.innerHTML = "";
       let totalStars = 0, count = 0;
 
-      reviewRef.once("value", snapshot => {
+      reviewRef.on("value", snapshot => {
+        list.innerHTML = ""; // 初期化
         snapshot.forEach(child => {
           const r = child.val();
           totalStars += r.star;
@@ -240,13 +240,11 @@
             <small>${escapeHtml(r.nickname)} - ${r.timestamp}</small>`;
           list.appendChild(div);
         });
-
-        const avg = (count > 0) ? (totalStars / count).toFixed(1) : 0;
+        const avg = (count > 0) ? (totalStars / count).toFixed(1) : 0.0;
         document.getElementById("avgRating").innerText = `${"★".repeat(Math.round(avg))}${"☆".repeat(5-Math.round(avg))} (${avg}) (${count})`;
       });
     }
-
-    reviewRef.on("value", refreshReviews);
+    refreshReviews();
 
     function escapeHtml(text) {
       return text.replace(/[&<>"']/g, (m) => {
