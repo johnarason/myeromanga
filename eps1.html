@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      overflow-x: hidden; /* 横スクロール防止 */
+      overflow-x: hidden;
     }
 
     body {
@@ -41,12 +41,11 @@
       top: 0;
       z-index: 100;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: relative;
-      box-sizing: border-box; /* 追加 */
+      box-sizing: border-box;
     }
     #menuBtn {
       cursor: pointer;
@@ -78,7 +77,6 @@
       border-radius: 6px;
       display: none;
       z-index: 101;
-      box-sizing: border-box; /* 追加 */
     }
     #searchInput {
       font-size: 16px;
@@ -89,7 +87,6 @@
       background-color: #000;
       color: #fff;
       width: 180px;
-      box-sizing: border-box; /* 追加 */
     }
 
     /* 作品一覧メニュー */
@@ -106,14 +103,13 @@
       max-width: 260px;
       box-shadow: 0 0 15px rgba(255,105,180,0.7);
       z-index: 101;
-      box-sizing: border-box; /* 追加 */
-      word-break: break-word; /* 長いテキストの折り返し */
+      word-break: break-word;
     }
     #menu a {
       display: block;
       padding: 8px 0;
       border-bottom: 1px solid #444;
-      word-break: break-word; /* 長いテキストの折り返し */
+      word-break: break-word;
     }
     #menu a:last-child {
       border-bottom: none;
@@ -128,8 +124,7 @@
       margin: 20px auto 40px;
       max-width: 700px;
       text-align: center;
-      padding: 0 10px; /* 追加：左右余白確保 */
-      box-sizing: border-box; /* 追加 */
+      padding: 0 10px;
     }
     .info h1 {
       font-size: 28px;
@@ -143,8 +138,7 @@
       max-width: 700px;
       margin: 0 auto 60px;
       padding: 0 10px;
-      box-sizing: border-box; /* 追加 */
-      width: 100%; /* 追加：画面幅に合わせる */
+      width: 100%;
     }
     .comic-img {
       max-width: 100%;
@@ -156,8 +150,6 @@
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
       border-radius: 4px;
       display: block;
-      box-sizing: border-box; /* 追加 */
-      max-width: 100%; /* 追加：親幅内に収める */
     }
     @media (max-width: 600px) {
       .comic-img {
@@ -174,10 +166,6 @@
       border-radius: 12px;
       color: #fff;
       box-shadow: 0 0 10px rgba(255,105,180,0.7);
-      box-sizing: border-box; /* 追加 */
-      width: 100%; /* 追加 */
-      padding-left: 10px;  /* 少し余白 */
-      padding-right: 10px; /* 少し余白 */
     }
     #comment-section h2 {
       margin-bottom: 16px;
@@ -192,7 +180,6 @@
       margin-bottom: 12px;
       font-size: 16px;
       resize: vertical;
-      box-sizing: border-box; /* 追加 */
     }
     #commentContent {
       min-height: 80px;
@@ -215,7 +202,6 @@
       text-align: left;
       max-height: 400px;
       overflow-y: auto;
-      box-sizing: border-box; /* 追加 */
     }
     .comment {
       background: #1e1e1e;
@@ -223,8 +209,7 @@
       padding: 12px;
       margin-bottom: 12px;
       border: 1px solid #555;
-      word-break: break-word; /* 長いテキストの折り返し */
-      box-sizing: border-box; /* 追加 */
+      word-break: break-word;
     }
     .comment strong {
       display: block;
@@ -233,11 +218,6 @@
     .comment .timestamp {
       font-size: 12px;
       color: #ccc;
-    }
-    hr.comment-divider {
-      border: none;
-      border-top: 1px solid #555;
-      margin: 8px 0;
     }
     .deleteBtn {
       font-size: 16px;
@@ -252,124 +232,79 @@
     .deleteBtn:hover {
       color: #e053a1;
     }
-    .magnifier-icon {
-      width: 20px;
-      height: 20px;
-      border: 3px solid white;
-      border-radius: 50%;
-      position: relative;
+
+    /* 🟥 右下広告 */
+    #adBanner {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      display: none;
+      z-index: 9999;
+      animation: slideInRight 1.5s ease forwards;
+    }
+    #adBanner img {
+      width: 300px;
+      height: auto;
+      display: block;
       cursor: pointer;
-      margin-left: 10px;
     }
-
-    .magnifier-icon::after {
-      content: '';
+    #adBanner #closeAd {
       position: absolute;
-      width: 10px;
-      height: 3px;
-      background-color: white;
-      transform: rotate(45deg);
-      bottom: -4px;
-      right: -4px;
-    }
-    .likeBtn {
-      background: none;
+      top: 4px;
+      right: 4px;
+      background-color: rgba(0,0,0,0.6);
+      color: white;
       border: none;
-      font-size: 16px;
-      user-select: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
     }
-	
-/* 🟥 右下広告 */
-#adBanner {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  display: none;
-  z-index: 9999;
-  animation: slideInRight 1.5s ease forwards;
- 
-}
 
-#adBanner img {
-  width: 300px;
-  height: auto;
-  display: block;
-}
+    /* 🟦 下からスライドインする下部広告 */
+    #adFullBanner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      display: none;
+      z-index: 9998;
+      animation: slideInDown 2.5s ease forwards;
+      cursor: pointer;
+    }
+    #adFullBanner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
 
-/* close ad ボタンを画像の右上に配置 */
-#adBanner #closeAd {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background-color: rgba(0,0,0,0.6);
-  color: white;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-
-/* 🟦 下からスライドインしてくる下部広告（AD2対応） */
-#adFullBanner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  display: none;
-  z-index: 9998;
-  animation: slideInDown 2.5s ease forwards;
-}
-#adFullBanner img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-}
-
-/* アニメーション定義 */
-@keyframes slideInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
+    /* アニメーション */
+    @keyframes slideInRight {
+      0% { opacity: 0; transform: translateX(100%); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
   </style>
 </head>
 <body>
 
 <header>
   <div id="menuBtn" title="作品一覧">&#9776;</div>
- <a href="index.html" class="logo">JOHN.ERO</a>
-<div id="searchToggle" title="検索" style="cursor:pointer; width:24px; height:24px; display:flex; align-items:center; justify-content:center;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="10" cy="10" r="7"></circle>
-    <line x1="15" y1="15" x2="22" y2="22"></line>
-  </svg>
-</div>
-
-<form id="searchForm" onsubmit="event.preventDefault(); searchComic();">
-  <input type="text" id="searchInput" placeholder="作品検索" autocomplete="off" />
-</form>
-
+  <a href="index.html" class="logo">JOHN.ERO</a>
+  <div id="searchToggle" title="検索" style="cursor:pointer; width:24px; height:24px; display:flex; align-items:center; justify-content:center;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="10" cy="10" r="7"></circle>
+      <line x1="15" y1="15" x2="22" y2="22"></line>
+    </svg>
+  </div>
+  <form id="searchForm" onsubmit="event.preventDefault(); searchComic();">
+    <input type="text" id="searchInput" placeholder="作品検索" autocomplete="off" />
+  </form>
 </header>
 
 <!-- 作品一覧メニュー -->
@@ -384,28 +319,28 @@
 </div>
 
 <div id="comic">
- <img class="comic-img" src="BC.png" alt="Page 0" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0001.jpg" alt="Page 1" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0002.jpg" alt="Page 2" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0003.jpg" alt="Page 3" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0004.jpg" alt="Page 4" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0005.jpg" alt="Page 5" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0006.jpg" alt="Page 6" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0007.jpg" alt="Page 7" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0008.jpg" alt="Page 8" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0009.jpg" alt="Page 9" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0010.jpg" alt="Page 10" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0011.jpg" alt="Page 11" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0012.jpg" alt="Page 12" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0013.jpg" alt="Page 13" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0014.jpg" alt="Page 14" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0015.jpg" alt="Page 15" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0016.jpg" alt="Page 16" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0017.jpg" alt="Page 17" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0018.jpg" alt="Page 18" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0019.jpg" alt="Page 19" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0020.jpg" alt="Page 20" />
-  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0021.jpg" alt="Page 21" />
+  <img class="comic-img" src="BC.png" alt="Page 0">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0001.jpg" alt="Page 1">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0002.jpg" alt="Page 2">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0003.jpg" alt="Page 3">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0004.jpg" alt="Page 4">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0005.jpg" alt="Page 5">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0006.jpg" alt="Page 6">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0007.jpg" alt="Page 7">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0008.jpg" alt="Page 8">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0009.jpg" alt="Page 9">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0010.jpg" alt="Page 10">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0011.jpg" alt="Page 11">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0012.jpg" alt="Page 12">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0013.jpg" alt="Page 13">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0014.jpg" alt="Page 14">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0015.jpg" alt="Page 15">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0016.jpg" alt="Page 16">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0017.jpg" alt="Page 17">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0018.jpg" alt="Page 18">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0019.jpg" alt="Page 19">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0020.jpg" alt="Page 20">
+  <img class="comic-img" src="僕の彼女の性欲が強すぎる話_page-0021.jpg" alt="Page 21">
 </div>
 
 <div id="comment-section">
@@ -416,39 +351,26 @@
   <div id="comments"></div>
 </div>
 
-<!-- 🟥 右下 close ad 広告 -->
-<div id="adBanner" onclick="location.href='buy.html'" style="cursor:pointer;">
-  <img src="AD.png" alt="広告" />
-  <button id="closeAd">close ad ×</button>
+<!-- 🟥 右下広告 -->
+<div id="adBanner">
+  <img src="AD.png" alt="広告" onclick="location.href='buy.html'">
+  <button id="closeAd" onclick="hideAd(); event.stopPropagation();">close ad ×</button>
 </div>
 
-<!-- 🟦 下からくる幅広バナー広告 -->
-<div id="adFullBanner" onclick="location.href='buy.html'" style="cursor:pointer;">
+<!-- 🟦 下部バナー広告 -->
+<div id="adFullBanner" onclick="location.href='buy.html'">
   <img id="adFullImage" src="AD2.png" alt="広告バナー" />
 </div>
-
-
-
-// --- 既存の広告ロジックの下あたりに追記 ---
-document.querySelector("#adBanner img").onclick = () => {
-  window.open("buy.html", "_blank");
-};
-
-document.querySelector("#adFullImage").onclick = () => {
-  window.open("buy.html", "_blank");
-};
 
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
 
-
-
 <script>
-if (!localStorage.getItem("userId")) {
-  localStorage.setItem("userId", crypto.randomUUID());
-}
-const userId = localStorage.getItem("userId");
+  if (!localStorage.getItem("userId")) {
+    localStorage.setItem("userId", crypto.randomUUID());
+  }
+  const userId = localStorage.getItem("userId");
 
   const firebaseConfig = {
     apiKey: "AIzaSyBreOGYSXd2lI-HhWimPLjTtfdqttkIsV0",
@@ -469,10 +391,10 @@ const userId = localStorage.getItem("userId");
     menu.style.display = (menu.style.display === "block") ? "none" : "block";
   });
 
-document.getElementById("searchToggle").addEventListener("click", () => {
-  const form = document.getElementById("searchForm");
-  form.style.display = (form.style.display === "block") ? "none" : "block";
-});
+  document.getElementById("searchToggle").addEventListener("click", () => {
+    const form = document.getElementById("searchForm");
+    form.style.display = (form.style.display === "block") ? "none" : "block";
+  });
 
   const works = [
     { name: "僕の彼女の性欲が強すぎる話", url: "index.html" },
@@ -516,7 +438,6 @@ document.getElementById("searchToggle").addEventListener("click", () => {
 
   const commentsDiv = document.getElementById("comments");
   function refreshComments() {
-
     commentsDiv.innerHTML = "";
     let count = 1;
     commentsRef.once("value", (snapshot) => {
@@ -524,49 +445,22 @@ document.getElementById("searchToggle").addEventListener("click", () => {
         const comment = childSnapshot.val();
         const div = document.createElement("div");
         div.className = "comment";
-       div.innerHTML = `
-  <strong>${count}. ${escapeHtml(comment.nickname)}</strong>
-  <span class="timestamp">${escapeHtml(comment.timestamp)}</span>
-  <button class="deleteBtn" data-key="${childSnapshot.key}" title="コメントを削除する" style="float:right; background:none; border:none; color:#ff69b4; cursor:pointer;">🗑️</button>
-  <br>${escapeHtml(comment.content).replace(/\n/g, "<br>")}
-  <br>
-  <button class="likeBtn" data-key="${childSnapshot.key}" style="margin-top:6px; cursor:pointer; color:${comment.likedBy && comment.likedBy[userId] ? 'deepskyblue' : 'gray'};">
-    👍 <span class="likeCount">${comment.likes || 0}</span>
-  </button>
-`;
-
+        div.innerHTML = `
+          <strong>${count}. ${escapeHtml(comment.nickname)}</strong>
+          <span class="timestamp">${escapeHtml(comment.timestamp)}</span>
+          <button class="deleteBtn" data-key="${childSnapshot.key}" title="コメントを削除する" style="float:right;">🗑️</button>
+          <br>${escapeHtml(comment.content).replace(/\n/g, "<br>")}
+        `;
         commentsDiv.appendChild(div);
         count++;
       });
       commentsDiv.scrollTop = commentsDiv.scrollHeight;
       attachDeleteHandlers();
-      attachLikeHandlers();
-
     });
   }
 
-function attachLikeHandlers() {
-  document.querySelectorAll(".likeBtn").forEach(btn => {
-    btn.onclick = () => {
-      const key = btn.getAttribute("data-key");
-      commentsRef.child(key).get().then(snapshot => {
-        const c = snapshot.val();
-        if (!c.likedBy) c.likedBy = {};
-        if (c.likedBy[userId]) {
-          alert("このコメントにはすでにいいねしています。");
-          return;
-        }
-        c.likes = (c.likes || 0) + 1;
-        c.likedBy[userId] = true;
-        commentsRef.child(key).update({ likes: c.likes, likedBy: c.likedBy });
-      });
-    };
-  });
-}
-
   function attachDeleteHandlers() {
-    const deleteButtons = document.querySelectorAll(".deleteBtn");
-    deleteButtons.forEach(btn => {
+    document.querySelectorAll(".deleteBtn").forEach(btn => {
       btn.onclick = () => {
         const key = btn.getAttribute("data-key");
         if (confirm("このコメントを削除しますか？")) {
@@ -578,8 +472,7 @@ function attachLikeHandlers() {
     });
   }
 
-commentsRef.on("value", refreshComments);
-
+  commentsRef.on("value", refreshComments);
 
   function escapeHtml(text) {
     return text.replace(/[&<>"']/g, (m) => {
@@ -592,63 +485,38 @@ commentsRef.on("value", refreshComments);
       }[m] || m;
     });
   }
-  
-// 🟥 右下広告ロジック（close可能 + 自動復活）
-let adTimer = null;
-function showAd() {
-  const ad = document.getElementById("adBanner");
-  ad.style.display = "block";
-  ad.style.animation = "slideInRight 1.5s ease forwards";
-  clearTimeout(adTimer);
-}
-function hideAd() {
-  document.getElementById("adBanner").style.display = "none";
-  adTimer = setTimeout(showAd, 10000); // 10秒後に再表示
-}
-document.getElementById("closeAd").addEventListener("click", hideAd);
-setTimeout(showAd, 10000); // 初回表示
 
-// 🟦 下部バナー広告（20秒ごとに表示、5秒後に消える）
-function showFullAd() {
-  const fullAd = document.getElementById("adFullBanner");
-  fullAd.style.display = "block";
-  fullAd.style.animation = "slideInDown 2s ease forwards";
+  // 🟥 右下広告
+  function showAd() {
+    document.getElementById("adBanner").style.display = "block";
+  }
+  function hideAd() {
+    document.getElementById("adBanner").style.display = "none";
+    setTimeout(showAd, 10000);
+  }
+  setTimeout(showAd, 10000);
 
-  setTimeout(() => {
-    fullAd.style.display = "none";
-  }, 5000);
-}
-setInterval(showFullAd, 10000); // 20秒ごとに出現
-
-
-function showFullAd() {
-  const ad = document.getElementById("adFullBanner");
-  const img = document.getElementById("adFullImage");
-
-  const sequence = ["AD3.png", "AD2.png", "AD3.png", "AD2.png"];
-  let step = 0;
-
-  // 初期表示
-  ad.style.display = "block";
-  ad.style.animation = "slideInDown 1s ease forwards";
-  img.src = sequence[step];
-
-  const interval = setInterval(() => {
-    step++;
-    if (step < sequence.length) {
-      img.src = sequence[step];
-    } else {
-      clearInterval(interval);
-      ad.style.display = "none";
-    }
-  }, 1700); // 2秒ごとに切り替え
-}
-
-// 10秒ごとに発動
-setInterval(showFullAd, 10000);
+  // 🟦 下部広告
+  function showFullAd() {
+    const ad = document.getElementById("adFullBanner");
+    const img = document.getElementById("adFullImage");
+    const sequence = ["AD3.png", "AD2.png"];
+    let step = 0;
+    ad.style.display = "block";
+    ad.style.animation = "slideInDown 1s ease forwards";
+    img.src = sequence[step];
+    const interval = setInterval(() => {
+      step++;
+      if (step < sequence.length) {
+        img.src = sequence[step];
+      } else {
+        clearInterval(interval);
+        ad.style.display = "none";
+      }
+    }, 1700);
+  }
+  setInterval(showFullAd, 10000);
 
 </script>
-
-
 </body>
 </html>
