@@ -96,16 +96,6 @@
     .btn:hover {
       background-color: #e053a1;
     }
-    #sampleSection {
-      display: none;
-      padding: 0 20px 40px;
-      text-align: center;
-    }
-    #sampleSection img {
-      max-width: 90%;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    }
     /* レビューエリア */
     #reviewArea {
       background: #fff;
@@ -120,6 +110,11 @@
       border-radius: 6px;
       margin-bottom: 10px;
       font-size: 14px;
+    }
+    .review-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin: 4px 0;
     }
     #reviewForm {
       margin-top: 20px;
@@ -147,7 +142,7 @@
 <body>
   <header>
     <button onclick="location.href='eps1.html'">← 作品一覧へ</button>
-    人妻欲情物語
+    JOHN.EROブックス
   </header>
 
   <div class="title">人妻欲情物語</div>
@@ -186,6 +181,7 @@
         <option value="2">★★☆☆☆ (2)</option>
         <option value="1">★☆☆☆☆ (1)</option>
       </select>
+      <input type="text" id="reviewTitle" placeholder="レビュータイトル（例：最高でした）" maxlength="50">
       <textarea id="reviewComment" placeholder="コメントを入力" maxlength="300"></textarea>
       <button onclick="submitReview()">レビューを送信</button>
     </div>
@@ -206,11 +202,12 @@
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-    const reviewRef = db.ref("reviews/hitoduma"); // 作品ごとに分ける
+    const reviewRef = db.ref("reviews/hitoduma");
 
     function submitReview() {
       const nickname = document.getElementById("nickname").value.trim() || "名無し";
       const star = Number(document.getElementById("reviewStar").value);
+      const title = document.getElementById("reviewTitle").value.trim() || "（タイトルなし）";
       const comment = document.getElementById("reviewComment").value.trim();
       if (!comment) {
         alert("コメントを入力してください");
@@ -218,9 +215,10 @@
       }
       const now = new Date();
       const timestamp = `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,"0")}/${String(now.getDate()).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
-      reviewRef.push({ nickname, star, comment, timestamp });
+      reviewRef.push({ nickname, star, title, comment, timestamp });
 
       document.getElementById("reviewComment").value = "";
+      document.getElementById("reviewTitle").value = "";
     }
 
     function refreshReviews() {
@@ -236,8 +234,10 @@
           const div = document.createElement("div");
           div.className = "review";
           div.innerHTML = `
-            <strong>${escapeHtml(r.nickname)}</strong> – ${"★".repeat(r.star)}${"☆".repeat(5 - r.star)}
-            <br>${escapeHtml(r.comment)}<br><small>${r.timestamp}</small>`;
+            ${"★".repeat(r.star)}${"☆".repeat(5 - r.star)}
+            <div class="review-title">${escapeHtml(r.title)}</div>
+            ${escapeHtml(r.comment)}<br>
+            <small>${escapeHtml(r.nickname)} - ${r.timestamp}</small>`;
           list.appendChild(div);
         });
 
