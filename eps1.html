@@ -417,20 +417,32 @@
 </div>
 
 <!-- 🟥 右下 close ad 広告 -->
-<div id="adBanner">
+<div id="adBanner" onclick="location.href='buy.html'" style="cursor:pointer;">
   <img src="AD.png" alt="広告" />
   <button id="closeAd">close ad ×</button>
 </div>
 
 <!-- 🟦 下からくる幅広バナー広告 -->
-<div id="adFullBanner">
+<div id="adFullBanner" onclick="location.href='buy.html'" style="cursor:pointer;">
   <img id="adFullImage" src="AD2.png" alt="広告バナー" />
 </div>
 
 
+
+// --- 既存の広告ロジックの下あたりに追記 ---
+document.querySelector("#adBanner img").onclick = () => {
+  window.open("buy.html", "_blank");
+};
+
+document.querySelector("#adFullImage").onclick = () => {
+  window.open("buy.html", "_blank");
+};
+
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+
+
 
 <script>
 if (!localStorage.getItem("userId")) {
