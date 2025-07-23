@@ -2,6 +2,141 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <title>試し読み - 人妻欲情物語</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .viewer {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 100%;
+      height: calc(100vh - 100px);
+      overflow: hidden;
+    }
+
+    .viewer img {
+      max-width: 90%;
+      max-height: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255,255,255,0.2);
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 28px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover {
+      background: rgba(255,105,180,0.7);
+    }
+    .nav-btn.left {
+      left: 10px;
+    }
+    .nav-btn.right {
+      right: 10px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(45deg, #ff69b4, #ff85c1);
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .viewer img {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="title">人妻欲情物語（試し読み）</div>
+
+<div class="viewer">
+  <button class="nav-btn left" onclick="prevPage()">＜</button>
+  <img id="currentPage" src="PP.png" alt="試し読みページ">
+  <button class="nav-btn right" onclick="nextPage()">＞</button>
+</div>
+
+<a href="buy.html" class="back-btn">購入ページに戻る</a>
+
+<script>
+  const pages = ["PP.png", "PPs.png", "PP1.png", "PP2.png"];
+  let currentIndex = 0;
+
+  function updatePage() {
+    document.getElementById("currentPage").src = pages[currentIndex];
+  }
+
+  function nextPage() {
+    if (currentIndex < pages.length - 1) {
+      currentIndex++;
+      updatePage();
+    }
+  }
+
+  function prevPage() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updatePage();
+    }
+  }
+
+  // スワイプ対応（スマホ）
+  let startX = 0;
+  document.querySelector(".viewer").addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+  document.querySelector(".viewer").addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) nextPage();
+    else if (endX - startX > 50) prevPage();
+  });
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>人妻欲情物語 - 試し読み</title>
   <style>
