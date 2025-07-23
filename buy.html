@@ -2,255 +2,319 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>人妻欲情物語 - JOHN.EROブックス</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <title>JOHN.EROブックス - 人妻欲情物語</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
       font-family: 'Segoe UI', sans-serif;
-      color: #333;
+      background: linear-gradient(180deg, #121212 0%, #1c1c1c 100%);
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
     }
+
     header {
       background-color: #ff69b4;
+      color: white;
       padding: 16px 20px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
-    header button {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #fff;
-      color: #ff69b4;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-    }
-    .title {
-      padding: 20px;
-      font-size: 22px;
-      font-weight: bold;
+      font-size: 24px;
       text-align: center;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .content {
+
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .book-info {
       display: flex;
-      gap: 20px;
-      padding: 0 20px;
       flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(255,105,180,0.3);
     }
+
     .cover {
-      flex: 1 1 200px;
-      max-width: 300px;
+      flex: 1 1 250px;
+      max-width: 250px;
     }
+
     .cover img {
       width: 100%;
       border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+      box-shadow: 0 0 8px rgba(0,0,0,0.6);
     }
+
     .details {
       flex: 2 1 300px;
     }
+
+    .title {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
     .rating {
-      font-size: 18px;
-      color: gold;
-      margin-bottom: 8px;
-    }
-    .details-box {
-      background: #fff;
-      padding: 12px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .buttons {
-      margin: 20px 20px 40px;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .btn {
-      background-color: #ff69b4;
-      color: #fff;
-      padding: 12px;
-      text-align: center;
-      border-radius: 8px;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
       font-size: 18px;
+    }
+
+    .stars {
+      font-size: 20px;
+      color: gold;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(45deg, #ff69b4, #ff85c1);
+      color: white;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.2s;
+      margin-right: 10px;
+      text-align: center;
+      transition: transform 0.2s;
     }
     .btn:hover {
-      background-color: #e053a1;
+      transform: scale(1.05);
     }
-    /* レビューエリア */
-    #reviewArea {
-      background: #fff;
-      margin: 0 20px 40px;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+
+    /* モーダル */
+    #sampleModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 2000;
     }
-    #reviewList .review {
-      background: #f8f8f8;
-      padding: 10px;
+    #sampleModal img {
+      max-width: 90%;
+      max-height: 80%;
       border-radius: 6px;
-      margin-bottom: 10px;
-      font-size: 14px;
+      box-shadow: 0 0 8px rgba(255,255,255,0.2);
     }
-    .review-title {
-      font-weight: bold;
-      font-size: 16px;
-      margin: 4px 0;
-    }
-    #reviewForm {
+    #closeModal {
       margin-top: 20px;
-    }
-    #reviewForm input, #reviewForm select, #reviewForm textarea {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    #reviewForm button {
       background: #ff69b4;
-      color: #fff;
       border: none;
-      padding: 10px;
-      border-radius: 4px;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
       cursor: pointer;
     }
-    #reviewForm button:hover {
-      background: #e053a1;
+
+    /* レビューセクション */
+    .review-section {
+      margin-top: 40px;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255,105,180,0.3);
+    }
+
+    .review-section h2 {
+      margin-bottom: 16px;
+      font-size: 20px;
+    }
+
+    .review-form {
+      margin-bottom: 20px;
+    }
+
+    .review-form input,
+    .review-form textarea,
+    .review-form select {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .review-form textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+
+    .review {
+      background: #2a2a2a;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #444;
+    }
+
+    .review-title {
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .review-stars {
+      color: gold;
+      font-size: 16px;
+    }
+
+    .average-rating {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #ccc;
+    }
+
+    /* スマホ */
+    @media (max-width: 600px) {
+      .book-info {
+        flex-direction: column;
+        text-align: center;
+      }
+      .details {
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <button onclick="location.href='eps1.html'">← 作品一覧へ</button>
-    JOHN.EROブックス
-  </header>
 
-  <div class="title">人妻欲情物語</div>
+<header>JOHN.EROブックス</header>
 
-  <div class="content">
+<main>
+  <!-- 作品情報 -->
+  <div class="book-info">
     <div class="cover">
-      <img src="PP.png" alt="表紙画像">
+      <img src="PP.png" alt="表紙画像" />
     </div>
     <div class="details">
-      <div class="rating" id="avgRating">★★★★★ (0.0) (0)</div>
-      <div class="details-box">
-        <strong>作品詳細</strong><br>
-        タイトル：人妻欲情物語<br>
-        作者：ジョン<br>
-        ジャンル：エロ<br>
-        ページ数：1
+      <div class="title">人妻欲情物語</div>
+      <div class="rating">
+        <div class="stars" id="averageStars">★★★★★</div>
+        <div class="average-rating" id="ratingSummary">5.0 (1件)</div>
       </div>
+      <div class="meta">
+        <div>作者：ジョン</div>
+        <div>ジャンル：エロ</div>
+        <div>ページ数：1</div>
+      </div>
+      <button class="btn" onclick="openSample()">試し読み</button>
+      <button class="btn" onclick="location.href='https://qr.paypay.ne.jp/p2p01_qGB4hP6JhnVhu4KG'">購入する</button>
     </div>
   </div>
 
-  <div class="buttons">
-    <a class="btn" href="sample.html">試し読み</a>
-    <a class="btn" href="https://qr.paypay.ne.jp/p2p01_qGB4hP6JhnVhu4KG" target="_blank">購入する</a>
-  </div>
-
-  <!-- レビューエリア -->
-  <div id="reviewArea">
+  <!-- レビュー -->
+  <div class="review-section">
     <h2>レビュー</h2>
-    <div id="reviewList"></div>
-    <div id="reviewForm">
-      <input type="text" id="nickname" placeholder="ニックネーム" maxlength="30">
-      <select id="reviewStar">
+    <div class="review-form">
+      <input type="text" id="reviewTitle" placeholder="レビュータイトル" maxlength="50" />
+      <select id="reviewStars">
         <option value="5">★★★★★ (5)</option>
         <option value="4">★★★★☆ (4)</option>
         <option value="3">★★★☆☆ (3)</option>
         <option value="2">★★☆☆☆ (2)</option>
         <option value="1">★☆☆☆☆ (1)</option>
       </select>
-      <input type="text" id="reviewTitle" placeholder="レビュータイトル" maxlength="50">
-      <textarea id="reviewComment" placeholder="コメントを入力" maxlength="300"></textarea>
-      <button onclick="submitReview()">レビューを送信</button>
+      <textarea id="reviewContent" placeholder="レビュー内容" maxlength="500"></textarea>
+      <button class="btn" onclick="submitReview()">レビューを投稿</button>
     </div>
+    <div id="reviewList"></div>
   </div>
+</main>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBreOGYSXd2lI-HhWimPLjTtfdqttkIsV0",
-      authDomain: "myeromanga.firebaseapp.com",
-      databaseURL: "https://myeromanga-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "myeromanga",
-      storageBucket: "myeromanga.firebasestorage.app",
-      messagingSenderId: "756137144604",
-      appId: "1:756137144604:web:e3e20dcbb58c6f1174cad9"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    const reviewRef = db.ref("reviews/hitoduma");
+<!-- モーダル試し読み -->
+<div id="sampleModal">
+  <img src="PPs.png" alt="試し読み" />
+  <button id="closeModal" onclick="closeSample()">閉じる</button>
+</div>
 
-    function submitReview() {
-      const nickname = document.getElementById("nickname").value.trim() || "名無し";
-      const star = Number(document.getElementById("reviewStar").value);
-      const title = document.getElementById("reviewTitle").value.trim() || "（タイトルなし）";
-      const comment = document.getElementById("reviewComment").value.trim();
-      if (!comment) {
-        alert("コメントを入力してください");
-        return;
-      }
-      const now = new Date();
-      const timestamp = `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,"0")}/${String(now.getDate()).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
-      reviewRef.push({ nickname, star, title, comment, timestamp });
-      document.getElementById("reviewComment").value = "";
-      document.getElementById("reviewTitle").value = "";
+<script>
+  const reviewList = [];
+  const reviewContainer = document.getElementById("reviewList");
+  const ratingSummary = document.getElementById("ratingSummary");
+  const averageStars = document.getElementById("averageStars");
+
+  function renderReviews() {
+    reviewContainer.innerHTML = "";
+    if (reviewList.length === 0) {
+      ratingSummary.textContent = "レビューはまだありません";
+      averageStars.textContent = "☆☆☆☆☆";
+      return;
     }
+    let totalStars = 0;
+    reviewList.forEach(r => totalStars += r.stars);
+    const avg = (totalStars / reviewList.length).toFixed(1);
 
-    function refreshReviews() {
-      const list = document.getElementById("reviewList");
-      list.innerHTML = "";
-      let totalStars = 0, count = 0;
+    // 星の平均値を表示
+    averageStars.textContent = "★★★★★".slice(0, avg >= 5 ? 5 : Math.round(avg)) + "☆☆☆☆☆".slice(0, 5 - Math.round(avg));
+    ratingSummary.textContent = `${avg} (${reviewList.length}件)`;
 
-      reviewRef.on("value", snapshot => {
-        list.innerHTML = ""; // 初期化
-        snapshot.forEach(child => {
-          const r = child.val();
-          totalStars += r.star;
-          count++;
-          const div = document.createElement("div");
-          div.className = "review";
-          div.innerHTML = `
-            ${"★".repeat(r.star)}${"☆".repeat(5 - r.star)}
-            <div class="review-title">${escapeHtml(r.title)}</div>
-            ${escapeHtml(r.comment)}<br>
-            <small>${escapeHtml(r.nickname)} - ${r.timestamp}</small>`;
-          list.appendChild(div);
-        });
-        const avg = (count > 0) ? (totalStars / count).toFixed(1) : 0.0;
-        document.getElementById("avgRating").innerText = `${"★".repeat(Math.round(avg))}${"☆".repeat(5-Math.round(avg))} (${avg}) (${count})`;
-      });
+    reviewList.forEach(r => {
+      const div = document.createElement("div");
+      div.className = "review";
+      div.innerHTML = `
+        <div class="review-title">${escapeHtml(r.title)}</div>
+        <div class="review-stars">${"★".repeat(r.stars)}${"☆".repeat(5 - r.stars)}</div>
+        <div class="review-content">${escapeHtml(r.content)}</div>
+      `;
+      reviewContainer.appendChild(div);
+    });
+  }
+
+  function submitReview() {
+    const title = document.getElementById("reviewTitle").value.trim();
+    const content = document.getElementById("reviewContent").value.trim();
+    const stars = parseInt(document.getElementById("reviewStars").value);
+    if (!title || !content) {
+      alert("レビュータイトルと内容を入力してください。");
+      return;
     }
-    refreshReviews();
+    reviewList.push({ title, content, stars });
+    document.getElementById("reviewTitle").value = "";
+    document.getElementById("reviewContent").value = "";
+    renderReviews();
+  }
 
-    function escapeHtml(text) {
-      return text.replace(/[&<>"']/g, (m) => {
-        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m];
-      });
-    }
-  </script>
+  function escapeHtml(text) {
+    return text.replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+  }
+
+  // 試し読みモーダル
+  function openSample() {
+    document.getElementById("sampleModal").style.display = "flex";
+  }
+  function closeSample() {
+    document.getElementById("sampleModal").style.display = "none";
+  }
+
+  renderReviews();
+</script>
+
 </body>
 </html>
