@@ -8,220 +8,107 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #121212;
+      background: #121212;
       color: #fff;
-      text-align: center;
+      overflow-x: hidden;
     }
-
-    .title {
+    header {
+      background-color: #ff69b4;
+      color: white;
+      padding: 12px;
       font-size: 22px;
+      text-align: center;
       font-weight: bold;
-      margin: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-
-    .viewer {
+    .slider-container {
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-width: 100%;
-      height: calc(100vh - 100px);
+      width: 100%;
+      max-width: 700px;
+      margin: 20px auto;
       overflow: hidden;
     }
-
-    .viewer img {
-      max-width: 90%;
-      max-height: 100%;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(255,255,255,0.2);
-      transition: opacity 0.3s ease;
+    .slider {
+      display: flex;
+      transition: transform 0.4s ease;
     }
-
+    .slider img {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      flex-shrink: 0;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    }
     .nav-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       border: none;
       color: white;
       font-size: 28px;
-      padding: 8px 14px;
-      border-radius: 6px;
       cursor: pointer;
-      user-select: none;
-      transition: background 0.2s;
+      padding: 6px 12px;
+      border-radius: 50%;
     }
     .nav-btn:hover {
-      background: rgba(255,105,180,0.7);
+      background: rgba(255, 105, 180, 0.8);
     }
-    .nav-btn.left {
-      left: 10px;
-    }
-    .nav-btn.right {
-      right: 10px;
-    }
-
+    .nav-btn.left { left: 10px; }
+    .nav-btn.right { right: 10px; }
     .back-btn {
-      display: inline-block;
+      display: block;
       margin: 20px auto;
       padding: 10px 20px;
-      font-size: 16px;
       border: none;
-      border-radius: 8px;
-      background: linear-gradient(45deg, #ff69b4, #ff85c1);
+      border-radius: 6px;
+      background-color: #ff69b4;
       color: white;
+      font-size: 16px;
       cursor: pointer;
-      transition: transform 0.2s;
-      text-decoration: none;
     }
     .back-btn:hover {
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 600px) {
-      .viewer img {
-        max-width: 100%;
-      }
+      background-color: #e053a1;
     }
   </style>
 </head>
 <body>
 
-<div class="title">人妻欲情物語（試し読み）</div>
+<header>試し読み - 人妻欲情物語</header>
 
-<div class="viewer">
-  <button class="nav-btn left" onclick="prevPage()">＜</button>
-  <img id="currentPage" src="PP.png" alt="試し読みページ">
-  <button class="nav-btn right" onclick="nextPage()">＞</button>
+<div class="slider-container">
+  <div class="slider" id="slider">
+    <img src="PP.png" alt="Page 1">
+    <img src="PPs.png" alt="Page 2">
+    <img src="PP1.png" alt="Page 3">
+    <img src="PP2.png" alt="Page 4">
+  </div>
+  <button class="nav-btn left" onclick="prevPage()">&#8249;</button>
+  <button class="nav-btn right" onclick="nextPage()">&#8250;</button>
 </div>
 
-<a href="buy.html" class="back-btn">購入ページに戻る</a>
+<button class="back-btn" onclick="location.href='buy.html'">購入ページに戻る</button>
 
 <script>
-  const pages = ["PP.png", "PPs.png", "PP1.png", "PP2.png"];
-  let currentIndex = 0;
+  const slider = document.getElementById('slider');
+  const totalPages = slider.children.length;
+  let currentPage = 0;
 
-  function updatePage() {
-    document.getElementById("currentPage").src = pages[currentIndex];
+  function updateSlider() {
+    slider.style.transform = `translateX(-${currentPage * 100}%)`;
   }
-
   function nextPage() {
-    if (currentIndex < pages.length - 1) {
-      currentIndex++;
-      updatePage();
-    }
+    currentPage = (currentPage + 1 < totalPages) ? currentPage + 1 : currentPage;
+    updateSlider();
   }
-
   function prevPage() {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updatePage();
-    }
+    currentPage = (currentPage > 0) ? currentPage - 1 : 0;
+    updateSlider();
   }
-
-  // スワイプ対応（スマホ）
-  let startX = 0;
-  document.querySelector(".viewer").addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-  document.querySelector(".viewer").addEventListener("touchend", (e) => {
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) nextPage();
-    else if (endX - startX > 50) prevPage();
-  });
 </script>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>人妻欲情物語 - 試し読み</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #121212;
-      font-family: 'Segoe UI', sans-serif;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    header {
-      background-color: rgba(0,0,0,0.7);
-      text-align: center;
-      padding: 14px 0;
-      font-size: 20px;
-      font-weight: bold;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    header button {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #ff69b4;
-      color: white;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .scroll-container {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      width: 100%;
-      height: 100vh;
-      align-items: center;
-    }
-
-    .page {
-      flex: 0 0 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      scroll-snap-align: center;
-      box-sizing: border-box;
-      padding: 20px;
-    }
-
-    .page img {
-      max-width: 100%;
-      max-height: 90vh;
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-    }
-
-    .scroll-container::-webkit-scrollbar {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <button onclick="location.href='buy.html'">← 購入ページへ</button>
-    人妻欲情物語
-  </header>
-
-  <div class="scroll-container">
-    <div class="page">
-      <img src="PPs.png" alt="試し読み1ページ目">
-    </div>
-    <!-- 2ページ目以降の追加例
-    <div class="page">
-      <img src="PPs2.png" alt="試し読み2ページ目">
-    </div>
-    -->
-  </div>
 </body>
 </html>
